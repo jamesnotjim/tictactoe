@@ -1,0 +1,95 @@
+<DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<style>
+			.square {
+				float: left;
+				margin: 10px;
+				min-height: 30px; 
+				min-width: 30px;
+				text-align: center;
+				background: lightgray;
+				text-align: right;
+				padding: 10px;
+				border: 1px solid black;
+				cursor: pointer;
+				display: inline-block;
+			}
+			.square:hover {
+				background: yellow;
+			}
+			.row {
+				float: none;
+				clear: both;
+			}
+			button#clearBoard {
+				margin: 10px;
+				padding: 10px;
+				width: 198px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="row1" class="row">
+			<div id="a1" class="square"></div>
+			<div id="b1" class="square"></div>
+			<div id="c1" class="square"></div>
+		</div>
+		<div id="row2" class="row">
+			<div id="a2" class="square"></div>
+			<div id="b2" class="square"></div>
+			<div id="c2" class="square"></div>
+		</div>
+		<div id="row3" class="row">
+			<div id="a3" class="square"></div>
+			<div id="b3" class="square"></div>
+			<div id="c3" class="square"></div>
+		</div>
+		<div id="row3" class="row">
+			<button id="clearBoard">Clear Board</button>
+		</div>
+
+		<script>
+			/* We're ready */
+			console.log('Ready: top of script.');
+			
+			var square = ['a1', 'a2', 'a3', 'b1', 'b2', 'b3', 'c1', 'c2', 'c3'];
+			for (i = 0; i < square.length; i++) {
+				square[i] = document.getElementById(square[i]);
+				square[i].addEventListener("click", markMove);
+			}
+
+			/* functions */
+			function markMove(event) {
+				console.log("markMove(event): start")
+				theID = event.target.id
+				theDiv = document.getElementById(theID)
+				console.log('\ttheID = ' + theID)
+				console.log('\ttheDiv = ' + theDiv)
+				console.log('\ttheDiv.innerHTML (before) = ' + theDiv.innerHTML)
+
+				if(theDiv.innerHTML == "") {
+					theDiv.innerHTML = "X"
+				} else if (theDiv.innerHTML == "X") {
+					theDiv.innerHTML = "O"
+				} else if (theDiv.innerHTML == "O"){
+					theDiv.innerHTML = ""
+				}
+				console.log('\ttheDiv.innerHTML (after) = ' + theDiv.innerHTML)
+				console.log("markMove(event): end")
+			}
+
+			document.getElementById('clearBoard').onclick = clearBoard; 
+			function clearBoard() {
+				for (i = 0; i < square.length; i++) {
+					document.getElementById(square[i]);
+					square[i].innerHTML = "";
+				}
+			};
+
+			/* We're ready */
+			console.log('Ready: end of script.');
+		</script>
+	</body>
+</html>
